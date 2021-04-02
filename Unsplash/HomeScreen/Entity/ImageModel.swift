@@ -8,7 +8,7 @@
 import Foundation
 
 struct ImageModel: Codable {
-    let urls: [ImageURLData]?
+    let urls: ImageURLData?
 }
 
 struct ImageURLData: Codable{

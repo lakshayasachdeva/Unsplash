@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+
+class HomeScreenRouter: ImageScreenRouterProtocol{
+    
+    func goToFullImageScreen() {
+        // go to full image screen
+    }
+    
+    
+}

@@ -27,6 +27,8 @@
 		B8A0EC1726179DA900A57562 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A0EC1526179DA900A57562 /* ImageCollectionViewCell.xib */; };
 		B8A0EC2026179E0D00A57562 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A0EC1E26179E0D00A57562 /* SearchBarCollectionReusableView.xib */; };
 		B8A0EC2126179E0D00A57562 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0EC1F26179E0D00A57562 /* SearchBarCollectionReusableView.swift */; };
+		B8A0EC2C2617B05B00A57562 /* AppNavigationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0EC2B2617B05B00A57562 /* AppNavigationHandler.swift */; };
+		B8A0EC352617B49100A57562 /* WebserviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0EC342617B49100A57562 /* WebserviceHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		B8A0EC1526179DA900A57562 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		B8A0EC1E26179E0D00A57562 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
 		B8A0EC1F26179E0D00A57562 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
+		B8A0EC2B2617B05B00A57562 /* AppNavigationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationHandler.swift; sourceTree = "<group>"; };
+		B8A0EC342617B49100A57562 /* WebserviceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebserviceHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,10 +238,12 @@
 		B8A0EBFC26179AEA00A57562 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B8A0EC412617C8C300A57562 /* Webservice */,
 				B8A0EC1F26179E0D00A57562 /* SearchBarCollectionReusableView.swift */,
 				B8A0EC1E26179E0D00A57562 /* SearchBarCollectionReusableView.xib */,
 				B8A0EBCF2617967400A57562 /* ImageColumnFlowLayout.swift */,
 				B8A0EBFD26179B1100A57562 /* AppConstants.swift */,
+				B8A0EC2B2617B05B00A57562 /* AppNavigationHandler.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -258,6 +264,14 @@
 				B8A0EC1526179DA900A57562 /* ImageCollectionViewCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		B8A0EC412617C8C300A57562 /* Webservice */ = {
+			isa = PBXGroup;
+			children = (
+				B8A0EC342617B49100A57562 /* WebserviceHelper.swift */,
+			);
+			path = Webservice;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +414,8 @@
 				B8A0EBE52617967400A57562 /* HomeViewController.swift in Sources */,
 				B8A0EBEB2617967400A57562 /* HomeScreenRouter.swift in Sources */,
 				B8A0EC1626179DA900A57562 /* ImageCollectionViewCell.swift in Sources */,
+				B8A0EC352617B49100A57562 /* WebserviceHelper.swift in Sources */,
+				B8A0EC2C2617B05B00A57562 /* AppNavigationHandler.swift in Sources */,
 				B8A0EB912617940600A57562 /* AppDelegate.swift in Sources */,
 				B8A0EB932617940600A57562 /* SceneDelegate.swift in Sources */,
 				B8A0EBDE2617967400A57562 /* ImageModel.swift in Sources */,

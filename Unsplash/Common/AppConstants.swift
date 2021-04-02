@@ -18,5 +18,6 @@ struct AppConstants {
     
     static let kHomeScreenTitle = "Unsplash"
     static let kSearchViewHeaderHeight: CGFloat = 50.0
+    static let kCollectionPhotosURL = "https://api.unsplash.com/collections/2423569/photos"
         
 }
