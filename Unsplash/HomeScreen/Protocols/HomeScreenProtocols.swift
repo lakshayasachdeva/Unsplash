@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import UIKit
+
+
+protocol ImageScreenProtocol {
+    var imagesCollectionView: UICollectionView! {
+        get set
+    }
+    func registerCollectionViewCellNibs()
+}
