@@ -41,6 +41,7 @@ class WebserviceHelper {
             completion(.failure(NetworkError.incorrectURL))
             return nil
         }
+        print("URL is \(url)")
         var request = URLRequest(url: url)
         request.timeoutInterval = 20.0
         request.httpMethod = "GET"

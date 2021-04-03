@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-protocol ImagesScreenViewProtocol: class {
+protocol ImagesScreenViewProtocol: class, UIViewControllerTransitioningDelegate {
     var imagesCollectionView: UICollectionView! {
         get set
     }
@@ -17,7 +17,6 @@ protocol ImagesScreenViewProtocol: class {
     var imagesArray: [ImageModel]? {get set}
     func showImages(withImageData data:[ImageModel]?)
     var presenter: ImagesScreenPresenterProtocol? {get set}
-    var currentPage: Int {get set}
 }
 
 
@@ -27,7 +26,8 @@ protocol ImagesScreenPresenterProtocol: class {
     var view: ImagesScreenViewProtocol? {get set}
     var interactor: ImagesScreenInputInteractorProtocol? {get set}
     var wireframe: ImageScreenRouterProtocol? {get set}
-    func getImages(forPageNum pageNum:Int)
+    func getImages(forPageNum pageNum:Int)    
+    func showFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol)
     
 }
 
@@ -36,6 +36,7 @@ protocol ImagesScreenPresenterProtocol: class {
 protocol ImagesScreenInputInteractorProtocol: class {
     var presenter: ImageScreenOutputInteractorOutputProtocol? {get set}
     func fetchImages(forPageNum pageNum:Int)
+    
 }
 
 
@@ -45,9 +46,8 @@ protocol ImageScreenOutputInteractorOutputProtocol: class {
 }
 
 // Router
-@objc protocol ImageScreenRouterProtocol: class {
-    @objc optional func goToSearchScreen()
-    func goToFullImageScreen()
+protocol ImageScreenRouterProtocol: class {
+    func goToFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol)
 }
 
 

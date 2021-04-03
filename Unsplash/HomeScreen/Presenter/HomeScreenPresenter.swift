@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 
 class HomeScreenPresenter: ImagesScreenPresenterProtocol, ImageScreenOutputInteractorOutputProtocol{
+    
+    
     
     
     
@@ -17,7 +20,7 @@ class HomeScreenPresenter: ImagesScreenPresenterProtocol, ImageScreenOutputInter
     var wireframe: ImageScreenRouterProtocol?
     
     func viewDidLoad() {
-        getImages(forPageNum: 0)
+        getImages(forPageNum: 1)
     }
     
     
@@ -29,7 +32,9 @@ class HomeScreenPresenter: ImagesScreenPresenterProtocol, ImageScreenOutputInter
         interactor?.fetchImages(forPageNum: pageNum)
     }
     
-    
+    func showFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl: String, presentFrom viewRef: ImagesScreenViewProtocol) {
+        wireframe?.goToFullImageScreen(withSelectedImage: selectedImage, andFullImageUrl: imgUrl, presentFrom: viewRef)
+    }
     
     
 }
