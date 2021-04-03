@@ -98,6 +98,7 @@ class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
 //        let emptyBackButton = UIBarButtonItem.init(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
 //        navigationController?.navigationBar.topItem?.backBarButtonItem = emptyBackButton
 //        navigationController?.pushViewController(vc, animated: true)
+        presenter?.showFilterScreen()
     }
     
 }

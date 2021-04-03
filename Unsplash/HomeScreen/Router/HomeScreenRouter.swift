@@ -10,7 +10,6 @@ import UIKit
 
 class HomeScreenRouter: ImageScreenRouterProtocol{
    
-
     func goToFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol) {
         // navigate to full image screen...
         AppNavigationHandler.goToFullImageScreen(withSelectedImage: selectedImage, andFullImageUrl: imgUrl, presentFrom: viewRef)
@@ -21,5 +20,10 @@ class HomeScreenRouter: ImageScreenRouterProtocol{
         // navigate to search result screen
         AppNavigationHandler.goToSearchScreen(fromViewController: viewRef as! HomeViewController)
     }
+    
+    func goToFilterScreen(presentFrom viewRef: ImagesScreenViewProtocol) {
+        AppNavigationHandler.goToAdvancedSearchScreen(fromViewController: viewRef as! SearchResultsViewController)
+    }
 
+    
 }

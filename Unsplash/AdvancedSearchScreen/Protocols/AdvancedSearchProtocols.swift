@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 
 protocol AdvancedSearchViewProtocol: class {
-    
+    var filtersTableView: UITableView! {get set}
+    func registerNibs()
+    var filters: [FilterModel]? {get set}
 }
 
 

@@ -63,6 +63,7 @@ class HomeViewController: UIViewController, ImagesScreenViewProtocol {
         imagesCollectionView.collectionViewLayout = twoColumnsLayout
         twoColumnsLayout.sectionHeadersPinToVisibleBounds = true
         twoColumnsLayout.headerReferenceSize = CGSize(width: self.view.bounds.width, height: AppConstants.kSearchViewHeaderHeight)
+        twoColumnsLayout.sectionHeadersPinToVisibleBounds = false
     }
     
     func showImages(withImageData data: [ImageModel]?) {

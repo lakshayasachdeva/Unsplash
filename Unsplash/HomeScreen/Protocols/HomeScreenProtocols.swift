@@ -31,7 +31,7 @@ protocol ImagesScreenPresenterProtocol: class {
     func showFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol)
     func showSearchScreen()
     func searchImages(withKeyword keyword:String, withPageNum pageNum:Int)
-
+    func showFilterScreen()
 }
 
 
@@ -52,7 +52,7 @@ protocol ImageScreenOutputInteractorOutputProtocol: class {
 protocol ImageScreenRouterProtocol: class {
     func goToFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol)
     func goToSearchScreen(presentFrom viewRef: ImagesScreenViewProtocol)
-    
+    func goToFilterScreen(presentFrom viewRef: ImagesScreenViewProtocol)
 }
 
 

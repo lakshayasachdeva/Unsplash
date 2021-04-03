@@ -455,8 +455,8 @@
 		B8A0ECB52618D2B500A57562 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				B8A0ECA02618D29600A57562 /* FilterItemTableViewCell.xib */,
 				B8A0ECA12618D29600A57562 /* FilterItemTableViewCell.swift */,
+				B8A0ECA02618D29600A57562 /* FilterItemTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

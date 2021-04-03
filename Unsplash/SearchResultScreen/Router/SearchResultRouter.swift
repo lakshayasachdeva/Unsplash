@@ -19,6 +19,8 @@ class SearchScreenRouter: SearchResultScreenRouterProtocol {
     
     func goToFilterScreen(presentFrom viewRef: ImagesScreenViewProtocol) {
         // navigate to search result screen
+        AppNavigationHandler.goToAdvancedSearchScreen(fromViewController: viewRef as! SearchResultsViewController)
     }
+    
 
 }
