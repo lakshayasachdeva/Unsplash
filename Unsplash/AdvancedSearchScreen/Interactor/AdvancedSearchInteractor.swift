@@ -33,6 +33,7 @@ class AdvancedSearchInteractor: AdvancedSearchInputInteractorProtocol{
         FilterModel.clearAllSavedFilters()
         let data = FilterModel.getDefaultFilters()
         presenter?.didResetFilters(filters: data)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstants.kUserDidApplyFilters), object: nil)
     }
     
     func saveAppliedFilters(withData filters: [FilterModel]) {

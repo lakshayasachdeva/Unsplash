@@ -18,6 +18,8 @@ class HomeViewController: UIViewController, ImagesScreenViewProtocol {
     
     
     
+    
+    
     // MARK: IBOutlets
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     
@@ -167,6 +169,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         presenter?.showFullImageScreen(withSelectedImage: selectedImage, andFullImageUrl: imagesArray![indexPath.row].urls!.full!, presentFrom: self)
     }
     
+    func setFilterIconVisibility(toBeShown status: Bool, withIamge image: UIImage?) {
+        // do nothing...
+    }
 }
 
 

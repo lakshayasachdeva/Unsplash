@@ -10,7 +10,8 @@ import UIKit
 
 
 class HomeScreenPresenter: ImagesScreenPresenterProtocol, ImageScreenOutputInteractorOutputProtocol{
-   
+    
+    
     weak var view: ImagesScreenViewProtocol?
     var interactor: ImagesScreenInputInteractorProtocol?
     var wireframe: ImageScreenRouterProtocol?
@@ -44,6 +45,9 @@ class HomeScreenPresenter: ImagesScreenPresenterProtocol, ImageScreenOutputInter
         wireframe?.goToFilterScreen(presentFrom: view!)
     }
     
+    func filterButtonStatus(toShow: Bool, imageToShow: UIImage?) {
+        view?.setFilterIconVisibility(toBeShown: toShow, withIamge: imageToShow)
+    }
 }
 
 

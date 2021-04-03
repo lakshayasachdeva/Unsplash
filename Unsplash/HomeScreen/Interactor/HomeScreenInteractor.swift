@@ -35,6 +35,7 @@ class HomeScreenInteractor: ImagesScreenInputInteractorProtocol{
     
     func searchImages(withKeyword keyword: String, withPageNum pageNum: Int) {
         guard let encodedText = keyword.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        var isFilterReset = true
         var urlComps = URLComponents(string: AppConstants.kSearchPhotosURL)
         var queryItems = [URLQueryItem]()
         queryItems.append(URLQueryItem(name: "query", value: encodedText))
@@ -50,12 +51,11 @@ class HomeScreenInteractor: ImagesScreenInputInteractorProtocol{
                     }
                 }
             }
+            isFilterReset = checkIfFiltersBeingReset(forFilters: filters)
         }
         urlComps?.queryItems = queryItems
         print(urlComps?.string)
         
-        
-       // let url = String(format: "%@?query=%@&page=%d", AppConstants.kSearchPhotosURL,encodedText, pageNum)
         WebserviceHelper.requestAPI(forUrl: urlComps!.string!) { (response) in
             switch response {
             case .success(let serverData):
@@ -66,6 +66,23 @@ class HomeScreenInteractor: ImagesScreenInputInteractorProtocol{
                     if let response = apiResponse {
                         DispatchQueue.main.async {
                             strongSelf.presenter?.didFetchImages(forPageNum: pageNum, andImages: response.results)
+                            let itemscount = response.results?.count ?? 0
+                            
+                            // when there are no items
+                            if itemscount == 0{
+                                if isFilterReset{
+                                    strongSelf.presenter?.filterButtonStatus(toShow: false, imageToShow: nil)
+                                } else{
+                                    strongSelf.presenter?.filterButtonStatus(toShow: true, imageToShow: AppConstants.sortAppliedIcon)
+                                }
+                            }// when there are items
+                            else{
+                                if isFilterReset {
+                                    strongSelf.presenter?.filterButtonStatus(toShow: true, imageToShow: AppConstants.sortIcon)
+                                } else{
+                                    strongSelf.presenter?.filterButtonStatus(toShow: true, imageToShow: AppConstants.sortAppliedIcon)
+                                }
+                            }
                         }
                     }
                 })
@@ -77,6 +94,16 @@ class HomeScreenInteractor: ImagesScreenInputInteractorProtocol{
     }
     
     
+    func checkIfFiltersBeingReset(forFilters currentFilter:[FilterModel]) -> Bool{
+        if let defaultFilters = FilterModel.getDefaultFilters() {
+            for i in 0..<defaultFilters.count{
+                if defaultFilters[i] != currentFilter[i]{
+                    return false
+                }
+            }
+        }
+        return true
+    }
    
     
     

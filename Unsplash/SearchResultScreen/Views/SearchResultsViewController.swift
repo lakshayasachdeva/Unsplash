@@ -10,6 +10,8 @@ import UIKit
 class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
     
     
+    
+    
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     var imagesArray: [ImageModel]?
     var presenter: ImagesScreenPresenterProtocol?
@@ -21,7 +23,7 @@ class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
     private let twoColumnsLayout = ImageColumnFlowLayout(cellsPerRow: 2, minimumInteritemSpacing: 20, minimumLineSpacing: 20, sectionInset: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
     private var searchKeyword: String?
     var screenType: ScreenType = .search
-    
+    var filterBtn: UIBarButtonItem?
     
     
     class func getSearchResultVC() -> SearchResultsViewController {
@@ -35,7 +37,6 @@ class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
         // Clearing saved filters as soon as this screen loads.
         FilterModel.clearAllSavedFilters()
         addSearchBar()
-        addFilterIcon()
         setupCollectionView()
         registerCollectionViewCellNibs()
         SearchResultScreenModule.create(viewRef: self)
@@ -76,11 +77,26 @@ class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
         }
     }
     
-    // MARK: UI elements setup methods
-    func addFilterIcon(){
-        let filterBtn = UIBarButtonItem(image: AppConstants.sortIcon, style: .plain, target: self, action: #selector(handleSortBtnTap))
-        self.navigationController?.visibleViewController?.navigationItem.rightBarButtonItem = filterBtn
+    func setFilterIconVisibility(toBeShown status: Bool, withIamge image: UIImage?) {
+        if status{
+            removeFilterIcon()
+            addFilterIcon(withIcon: image)
+        } else{
+            removeFilterIcon()
+        }
     }
+    
+    // MARK: UI elements setup methods
+    func addFilterIcon(withIcon icon:UIImage?){
+        filterBtn = UIBarButtonItem(image: icon, style: .plain, target: self, action: #selector(handleSortBtnTap))
+        self.navigationItem.rightBarButtonItem = filterBtn
+    }
+    
+    func removeFilterIcon(){
+        filterBtn = nil
+        self.navigationItem.rightBarButtonItem = nil
+    }
+    
     
     
     func addSearchBar(){
@@ -124,6 +140,8 @@ class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
     deinit {
         removeObserverForFiltersChange()
     }
+    
+    
 }
 
 

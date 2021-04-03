@@ -18,6 +18,7 @@ protocol ImagesScreenViewProtocol: class, UIViewControllerTransitioningDelegate 
     func showImages(withImageData data:[ImageModel]?)
     var presenter: ImagesScreenPresenterProtocol? {get set}
     var screenType: ScreenType { get set}
+    func setFilterIconVisibility(toBeShown status:Bool, withIamge image:UIImage?)
 }
 
 
@@ -46,6 +47,7 @@ protocol ImagesScreenInputInteractorProtocol: class {
 // Ineractor => Presenter
 protocol ImageScreenOutputInteractorOutputProtocol: class {
     func didFetchImages(forPageNum pageNum:Int, andImages images:[ImageModel]?)
+    func filterButtonStatus(toShow:Bool, imageToShow:UIImage?)
 }
 
 // Router
