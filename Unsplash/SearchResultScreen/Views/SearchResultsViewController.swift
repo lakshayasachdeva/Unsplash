@@ -210,3 +210,45 @@ extension SearchResultsViewController: UISearchBarDelegate {
         presenter?.searchImages(withKeyword: query, withPageNum: currentPage)
     }
 }
+
+
+
+extension SearchResultsViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        let photoViewController = presented as! FullScreenImageViewController
+        animationController.setupImageTransition( image: selectedImage!,
+                                                  fromDelegate: self,
+                                                  toDelegate: photoViewController)
+        return animationController
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        let photoViewController = dismissed as! FullScreenImageViewController
+        animationController.setupImageTransition( image: selectedImage!,
+                                                  fromDelegate: photoViewController,
+                                                  toDelegate: self)
+        return animationController
+    }
+}
+
+extension SearchResultsViewController: ImageTransitionProtocol {
+    
+    func tranisitionStarted() {
+        
+    }
+    
+    func tranisitionFinished() {
+        
+    }
+    
+    func imageFrame() -> CGRect{
+        let indexPath = IndexPath(row: selectedIndex, section: 0)
+        let attributes = imagesCollectionView.layoutAttributesForItem(at: indexPath)
+        let cellRect = attributes!.frame
+        return imagesCollectionView.convert(cellRect, to: self.navigationController?.view)
+    }
+}
+
