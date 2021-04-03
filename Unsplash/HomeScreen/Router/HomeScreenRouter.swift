@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class HomeScreenRouter: ImageScreenRouterProtocol{
+   
+
     func goToFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol) {
         let vc = FullScreenImageViewController.getFullScreenVC()
         vc.transitioningDelegate = viewRef
@@ -20,8 +22,9 @@ class HomeScreenRouter: ImageScreenRouterProtocol{
     }
     
     
+    func goToSearchScreen(presentFrom viewRef: ImagesScreenViewProtocol) {
+        // navigate to search result screen
+        AppNavigationHandler.goToSearchScreen(fromViewController: viewRef as! HomeViewController)
+    }
 
-    
-    
-    
 }

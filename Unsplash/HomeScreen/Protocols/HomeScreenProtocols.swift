@@ -28,6 +28,8 @@ protocol ImagesScreenPresenterProtocol: class {
     var wireframe: ImageScreenRouterProtocol? {get set}
     func getImages(forPageNum pageNum:Int)    
     func showFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol)
+    func showSearchScreen()
+
     
 }
 
@@ -48,8 +50,9 @@ protocol ImageScreenOutputInteractorOutputProtocol: class {
 // Router
 protocol ImageScreenRouterProtocol: class {
     func goToFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol)
-}
+    func goToSearchScreen(presentFrom viewRef: ImagesScreenViewProtocol)
 
+}
 
 
 

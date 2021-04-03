@@ -152,12 +152,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 // MARK: Delegates
 
 extension HomeViewController: SearchHeaderViewProtocol{
-    
     func didTapOnView() {
-        
+        presenter?.showSearchScreen()
     }
-    
-    
 }
 
 

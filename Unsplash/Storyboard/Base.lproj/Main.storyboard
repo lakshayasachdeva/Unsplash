@@ -110,7 +110,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulg-lV-q3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1655" y="56"/>
+            <point key="canvasLocation" x="1432" y="56"/>
+        </scene>
+        <!--Search Results View Controller-->
+        <scene sceneID="n9J-iM-Awt">
+            <objects>
+                <viewController storyboardIdentifier="SearchResultsViewController" id="Smp-7a-cPx" customClass="SearchResultsViewController" customModule="Unsplash" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vih-c1-Xfb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="rKU-c5-E9I"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ivI-aM-L1s"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RDM-iW-CDv" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2152" y="56"/>
         </scene>
     </scenes>
     <resources>

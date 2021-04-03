@@ -11,10 +11,6 @@ import UIKit
 
 class HomeScreenPresenter: ImagesScreenPresenterProtocol, ImageScreenOutputInteractorOutputProtocol{
     
-    
-    
-    
-    
     weak var view: ImagesScreenViewProtocol?
     var interactor: ImagesScreenInputInteractorProtocol?
     var wireframe: ImageScreenRouterProtocol?
@@ -36,5 +32,8 @@ class HomeScreenPresenter: ImagesScreenPresenterProtocol, ImageScreenOutputInter
         wireframe?.goToFullImageScreen(withSelectedImage: selectedImage, andFullImageUrl: imgUrl, presentFrom: viewRef)
     }
     
+    func showSearchScreen() {
+        wireframe?.goToSearchScreen(presentFrom: view!) 
+    }
     
 }
