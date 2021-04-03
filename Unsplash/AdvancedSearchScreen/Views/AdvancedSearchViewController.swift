@@ -8,6 +8,8 @@
 import UIKit
 
 class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol {
+   
+    
     
     
     
@@ -65,11 +67,10 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
     }
     
     @IBAction func handleCancelBtnTap(sender: UIButton){
-        self.navigationController?.popViewController(animated: true)
+        presenter?.didTapOnCancelButton()
     }
     
     @IBAction func handleApplyBtnTap(sender: UIButton){
-        //TODO;- tell search controller to apply filters...
         presenter?.didTapOnApplyButton(withAppliedFilter: self.filters ?? [FilterModel]())
     }
     
@@ -86,10 +87,8 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
     func reloadGroup(num: Int){
         self.filtersTableView.reloadSections(IndexSet(integer: num), with: .fade)
     }
+   
     
-    func didApplyFilters() {
-        self.navigationController?.popViewController(animated: true)
-    }
 }
 
 

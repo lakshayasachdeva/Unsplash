@@ -16,10 +16,9 @@ protocol AdvancedSearchViewProtocol: class {
     func showData(withFilters filters: [FilterModel]?)
     func showModifiedData(withFitlerData data:[FilterModel]?, forGroup groupNum: Int)
     var presenter: AdvancedSearchPresenterProtocol? {get set}
-    func didApplyFilters()
 }
 
-
+// View => Presenter
 protocol AdvancedSearchPresenterProtocol: class {
     var view: AdvancedSearchViewProtocol? {get set}
     var interactor: AdvancedSearchInputInteractorProtocol? {get set}
@@ -32,6 +31,7 @@ protocol AdvancedSearchPresenterProtocol: class {
 }
 
 
+// Presnter => Interactor
 protocol AdvancedSearchInputInteractorProtocol: class {
     var presenter: AdvancedSearchOuputInteractorProtocol? {get set}
     func fetchSavedFilters()
@@ -40,7 +40,7 @@ protocol AdvancedSearchInputInteractorProtocol: class {
     func saveAppliedFilters(withData filters:[FilterModel])
 }
 
-
+// Interactor => Presenter
 protocol AdvancedSearchOuputInteractorProtocol: class{
     func didFetchSavedFilters(withFilters filters: [FilterModel]?)
     func didModifyFilters(filters data:[FilterModel]?, forGroup group:Int)
@@ -48,7 +48,7 @@ protocol AdvancedSearchOuputInteractorProtocol: class{
     func didSaveFilters()
 }
 
-
+// Router
 protocol AdvancedSearchRouterProtocol: class {
-    func popToPreviousScreen()
+    func popToPreviousScreen(fromScreen screen: AdvancedSearchViewController)
 }

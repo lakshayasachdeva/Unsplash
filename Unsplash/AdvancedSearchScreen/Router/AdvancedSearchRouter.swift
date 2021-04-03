@@ -10,10 +10,8 @@ import Foundation
 
 class AdvancedSearchRouter: AdvancedSearchRouterProtocol{
     
-    func popToPreviousScreen() {
-        
+    func popToPreviousScreen(fromScreen screen: AdvancedSearchViewController) {
+        screen.navigationController?.popViewController(animated: true)
     }
-    
-    
     
 }

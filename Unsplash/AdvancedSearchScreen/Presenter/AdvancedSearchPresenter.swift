@@ -8,10 +8,9 @@
 import Foundation
 
 class AdvancedSearchPresenter: AdvancedSearchPresenterProtocol, AdvancedSearchOuputInteractorProtocol {
+    
+    
    
-    
-    
-    
     var view: AdvancedSearchViewProtocol?
     var interactor: AdvancedSearchInputInteractorProtocol?
     var wireframe: AdvancedSearchRouterProtocol?
@@ -20,10 +19,7 @@ class AdvancedSearchPresenter: AdvancedSearchPresenterProtocol, AdvancedSearchOu
         interactor?.fetchSavedFilters()
     }
     
-    func didTapOnCancelButton() {
-        
-    }
-    
+   
     func didFetchSavedFilters(withFilters filters: [FilterModel]?) {
         view?.showData(withFilters: filters)
     }
@@ -49,7 +45,13 @@ class AdvancedSearchPresenter: AdvancedSearchPresenterProtocol, AdvancedSearchOu
     }
     
     func didSaveFilters() {
-        view?.didApplyFilters()
+        wireframe?.popToPreviousScreen(fromScreen: view as! AdvancedSearchViewController)
     }
+    
+    func didTapOnCancelButton() {
+        wireframe?.popToPreviousScreen(fromScreen: view as! AdvancedSearchViewController)
+    }
+    
+ 
     
 }
