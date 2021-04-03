@@ -18,15 +18,15 @@ class AdvancedSearchInteractor: AdvancedSearchInputInteractorProtocol{
     
     
     func modifyFilters(withChangedItem itemIndex: Int, forGroup groupNum: Int, toCurrentFilter filters: [FilterModel]){
-        var cuurentFilters = filters
-        for i in 0..<cuurentFilters[groupNum].items!.count{
+        var newFilters = filters
+        for i in 0..<newFilters[groupNum].items!.count{
             if i == itemIndex{
-                cuurentFilters[groupNum].items![i].isApplied = true
+                newFilters[groupNum].items![i].isApplied = true
             } else{
-                cuurentFilters[groupNum].items![i].isApplied = false
+                newFilters[groupNum].items![i].isApplied = false
             }
         }
-        presenter?.didModifyFilters(filters: cuurentFilters, forGroup: groupNum)
+        presenter?.didModifyFilters(filters: newFilters, forGroup: groupNum)
     }
     
     func resetAllFilters() {
@@ -38,6 +38,8 @@ class AdvancedSearchInteractor: AdvancedSearchInputInteractorProtocol{
     func saveAppliedFilters(withData filters: [FilterModel]) {
         FilterModel.saveFilters(items: filters)
         presenter?.didSaveFilters()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstants.kUserDidApplyFilters), object: nil)
+
     }
     
     

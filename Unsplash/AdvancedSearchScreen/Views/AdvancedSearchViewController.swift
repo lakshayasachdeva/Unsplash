@@ -20,7 +20,7 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
         }
     }
     @IBOutlet weak var cancelButton: UIButton!
-    var filters = FilterModel.getFilters()
+    var filters: [FilterModel]?
     var presenter: AdvancedSearchPresenterProtocol?
     
     class func getAdvancedSearchVC() -> AdvancedSearchViewController {
@@ -35,6 +35,7 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
         drawBorderOnCancelBtn()
         registerNibs()
         AdvancedSearchModule.create(viewRef: self)
+        presenter?.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool){
@@ -135,19 +136,5 @@ extension AdvancedSearchViewController: FilterItemSelectionProtocol{
     func didSelectFilter(withSelectedItem itemIndex: Int, withGroupNum groupNum: Int) {
         presenter?.didSelectFilter(withSelectedItem: itemIndex, withGroupNum: groupNum, andPreviousFilter: self.filters!)
     }
-    
-//    func checkiSFilterAppliedByUser(){
-//        var isApplied = true
-//        let defaultFilters = FilterModel.getDefaultFilters()
-//        for i in 0..<filters!.count{
-//            let customFilter = filters![i]
-//            let defaultfilter = defaultFilters![i]
-//            if customFilter != defaultfilter{
-//                isApplied = false
-//                break
-//            }
-//        }
-//        print(isApplied)
-//    }
     
 }

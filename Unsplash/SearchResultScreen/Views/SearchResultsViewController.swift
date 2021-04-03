@@ -9,7 +9,7 @@ import UIKit
 
 class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
     
-
+    
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     var imagesArray: [ImageModel]?
     var presenter: ImagesScreenPresenterProtocol?
@@ -21,8 +21,8 @@ class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
     private let twoColumnsLayout = ImageColumnFlowLayout(cellsPerRow: 2, minimumInteritemSpacing: 20, minimumLineSpacing: 20, sectionInset: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
     private var searchKeyword: String?
     var screenType: ScreenType = .search
-
-
+    
+    
     
     class func getSearchResultVC() -> SearchResultsViewController {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsViewController") as! SearchResultsViewController
@@ -32,11 +32,14 @@ class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Clearing saved filters as soon as this screen loads.
+        FilterModel.clearAllSavedFilters()
         addSearchBar()
         addFilterIcon()
         setupCollectionView()
         registerCollectionViewCellNibs()
         SearchResultScreenModule.create(viewRef: self)
+        addObserverForFiltersChange()
     }
     
     override func viewWillAppear(_ animated: Bool){
@@ -44,6 +47,9 @@ class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
         navigationItem.largeTitleDisplayMode = .never
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
     
     func registerCollectionViewCellNibs() {
         imagesCollectionView.register(ImageCollectionViewCell.cellNib, forCellWithReuseIdentifier: ImageCollectionViewCell.reuseIdentifier)
@@ -93,14 +99,31 @@ class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
     
     // MARK: Action methods
     @objc func handleSortBtnTap(){
-        // TODO: Go to sort and filter screen...
-//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdvancedSearchViewController") as! AdvancedSearchViewController
-//        let emptyBackButton = UIBarButtonItem.init(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-//        navigationController?.navigationBar.topItem?.backBarButtonItem = emptyBackButton
-//        navigationController?.pushViewController(vc, animated: true)
         presenter?.showFilterScreen()
     }
     
+    // MARK: Filter notification
+    func addObserverForFiltersChange(){
+        NotificationCenter.default.addObserver(self, selector: #selector(didFilterChange), name: NSNotification.Name(rawValue: AppConstants.kUserDidApplyFilters), object: nil)
+    }
+    
+    func removeObserverForFiltersChange(){
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func didFilterChange(){
+        guard let searchString = searchKeyword else {
+            return
+        }
+        currentPage = 1
+        imagesArray?.removeAll()
+        imagesCollectionView.reloadData()
+        presenter?.searchImages(withKeyword: searchString, withPageNum: currentPage)
+    }
+    
+    deinit {
+        removeObserverForFiltersChange()
+    }
 }
 
 
@@ -157,7 +180,7 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
 }
 
 
-extension SearchResultsViewController: UISearchBarDelegate{
+extension SearchResultsViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true

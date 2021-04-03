@@ -46,7 +46,7 @@ struct AppConstants {
                                           name: "Orientation",
                                           items: [FilterItem(name: "Any", value: nil, isApplied: true),FilterItem(name: "Landscape", value: "landscape", isApplied: false), FilterItem(name: "Portrait", value: "portrait", isApplied: false), FilterItem(name: "Square", value: "squarish", isApplied: false)])
 
-    
+    static let kUserDidApplyFilters = "filtersAppliedByUser"
 }
 
 
