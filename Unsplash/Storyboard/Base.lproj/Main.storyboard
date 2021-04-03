@@ -154,10 +154,111 @@
             </objects>
             <point key="canvasLocation" x="2170" y="56"/>
         </scene>
+        <!--Advanced Search View Controller-->
+        <scene sceneID="MXo-Id-HSK">
+            <objects>
+                <viewController storyboardIdentifier="AdvancedSearchViewController" id="tv0-uk-zOS" customClass="AdvancedSearchViewController" customModule="Unsplash" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mTq-nC-2Eo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="0uN-82-Qk1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="tv0-uk-zOS" id="HdE-vZ-CHD"/>
+                                    <outlet property="delegate" destination="tv0-uk-zOS" id="OAe-q4-XSa"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3h5-U0-1uD">
+                                <rect key="frame" x="0.0" y="772" width="414" height="90"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="RSm-Oe-sCa">
+                                        <rect key="frame" x="20" y="20" width="374" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZqU-du-w7n">
+                                                <rect key="frame" x="0.0" y="0.0" width="172" height="60"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.clipsToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="handleCancelBtnTapWithSender:" destination="tv0-uk-zOS" eventType="touchUpOutside" id="je5-Jo-YjI"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrw-Wu-f7u">
+                                                <rect key="frame" x="202" y="0.0" width="172" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <state key="normal" title="Apply">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="handleApplyBtnTapWithSender:" destination="tv0-uk-zOS" eventType="touchUpInside" id="6gb-sx-ZUi"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FcU-Rv-ccp">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1.5"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.12" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1.5" id="G51-dP-5Mu"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="RSm-Oe-sCa" secondAttribute="trailing" constant="20" id="3aD-Tw-Ydl"/>
+                                    <constraint firstItem="FcU-Rv-ccp" firstAttribute="top" secondItem="3h5-U0-1uD" secondAttribute="top" id="8xq-Ce-MaC"/>
+                                    <constraint firstItem="RSm-Oe-sCa" firstAttribute="leading" secondItem="3h5-U0-1uD" secondAttribute="leading" constant="20" id="CUQ-OD-t5n"/>
+                                    <constraint firstAttribute="height" constant="90" id="OBx-Oo-xeI"/>
+                                    <constraint firstAttribute="bottom" secondItem="RSm-Oe-sCa" secondAttribute="bottom" constant="10" id="U0F-3p-JGL"/>
+                                    <constraint firstItem="RSm-Oe-sCa" firstAttribute="top" secondItem="3h5-U0-1uD" secondAttribute="top" constant="20" id="hJl-vA-Y1w"/>
+                                    <constraint firstItem="FcU-Rv-ccp" firstAttribute="leading" secondItem="3h5-U0-1uD" secondAttribute="leading" id="lbm-25-Rvm"/>
+                                    <constraint firstAttribute="trailing" secondItem="FcU-Rv-ccp" secondAttribute="trailing" id="uVQ-P9-ze0"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2db-Fg-v5b"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0uN-82-Qk1" firstAttribute="top" secondItem="2db-Fg-v5b" secondAttribute="top" id="49C-Y7-ZJ0"/>
+                            <constraint firstItem="2db-Fg-v5b" firstAttribute="trailing" secondItem="0uN-82-Qk1" secondAttribute="trailing" id="6dj-GS-bzu"/>
+                            <constraint firstItem="0uN-82-Qk1" firstAttribute="leading" secondItem="2db-Fg-v5b" secondAttribute="leading" id="Gcc-Zz-XhU"/>
+                            <constraint firstItem="2db-Fg-v5b" firstAttribute="bottom" secondItem="3h5-U0-1uD" secondAttribute="bottom" id="LUB-sD-3DK"/>
+                            <constraint firstItem="2db-Fg-v5b" firstAttribute="trailing" secondItem="3h5-U0-1uD" secondAttribute="trailing" id="PiM-Nf-tD7"/>
+                            <constraint firstItem="3h5-U0-1uD" firstAttribute="leading" secondItem="2db-Fg-v5b" secondAttribute="leading" id="dSV-qu-oVo"/>
+                            <constraint firstItem="2db-Fg-v5b" firstAttribute="bottom" secondItem="0uN-82-Qk1" secondAttribute="bottom" id="i5k-bi-lG4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="ZqU-du-w7n" id="uYn-De-hUr"/>
+                        <outlet property="filtersTableView" destination="0uN-82-Qk1" id="Y8Y-4h-Fpd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bq3-2v-zVo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2920" y="56"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

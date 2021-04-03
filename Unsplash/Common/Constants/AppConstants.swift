@@ -28,6 +28,9 @@ struct AppConstants {
     
     static let kSearchPhotosURL = "\(AppConstants.kBaseURL)" + "/search/photos"
     static let kEmptyRecordsMessage = "No records found! Try searching with different keyword e.g. Star wars"
+    static let filterScreenTitle = "Filters"
+    static let kAppliedFiltersKey = "appliedFilters"
+
     
 }
 
