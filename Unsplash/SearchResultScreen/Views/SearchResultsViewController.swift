@@ -106,8 +106,16 @@ class SearchResultsViewController: UIViewController, ImagesScreenViewProtocol {
 extension SearchResultsViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imagesArray?.count ?? 0
+        guard let images = imagesArray else {return 0}
+        let imagesCount = images.count
+        if imagesCount == 0{
+            imagesCollectionView.setEmptyMessage(AppConstants.kEmptyRecordsMessage)
+        } else{
+            imagesCollectionView.restore()
+        }
+        return imagesCount
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.reuseIdentifier, for: indexPath) as! ImageCollectionViewCell

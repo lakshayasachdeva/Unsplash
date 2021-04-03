@@ -27,8 +27,27 @@ struct AppConstants {
     static let searchBarPlaceholderText = "Search images e.g. starwars"
     
     static let kSearchPhotosURL = "\(AppConstants.kBaseURL)" + "/search/photos"
+    static let kEmptyRecordsMessage = "No records found! Try searching with different keyword e.g. Star wars"
     
 }
 
 
 
+extension UICollectionView {
+
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 30.0, y: 0, width: self.bounds.size.width - 60.0, height: self.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = UIColor.black.withAlphaComponent(0.6)
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.font = UIFont(name: "Avenir Next", size: 20.0)!
+        messageLabel.sizeToFit()
+
+        self.backgroundView = messageLabel;
+    }
+
+    func restore() {
+        self.backgroundView = nil
+    }
+}
