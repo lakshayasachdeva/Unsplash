@@ -34,8 +34,6 @@
 		B8A0EC532617D4B900A57562 /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0EC522617D4B900A57562 /* FullScreenImageViewController.swift */; };
 		B8A0EC6526188C8400A57562 /* SearchResultModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0EC5A26188C8300A57562 /* SearchResultModule.swift */; };
 		B8A0EC6726188C8400A57562 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0EC5E26188C8300A57562 /* SearchResultsViewController.swift */; };
-		B8A0EC6826188C8400A57562 /* SearchResultProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0EC6026188C8400A57562 /* SearchResultProtocols.swift */; };
-		B8A0EC6A26188C8400A57562 /* SearchResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0EC6426188C8400A57562 /* SearchResultRouter.swift */; };
 		B8A0EC8E2618BDEE00A57562 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0EC8D2618BDEE00A57562 /* SearchResultModel.swift */; };
 		B8A0ECA92618D29600A57562 /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0EC9A2618D29600A57562 /* FilterModel.swift */; };
 		B8A0ECAA2618D29600A57562 /* AdvancedSearchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0EC9C2618D29600A57562 /* AdvancedSearchModule.swift */; };
@@ -99,8 +97,6 @@
 		B8A0EC522617D4B900A57562 /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
 		B8A0EC5A26188C8300A57562 /* SearchResultModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultModule.swift; sourceTree = "<group>"; };
 		B8A0EC5E26188C8300A57562 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
-		B8A0EC6026188C8400A57562 /* SearchResultProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultProtocols.swift; sourceTree = "<group>"; };
-		B8A0EC6426188C8400A57562 /* SearchResultRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultRouter.swift; sourceTree = "<group>"; };
 		B8A0EC8D2618BDEE00A57562 /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
 		B8A0EC9A2618D29600A57562 /* FilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
 		B8A0EC9C2618D29600A57562 /* AdvancedSearchModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedSearchModule.swift; sourceTree = "<group>"; };
@@ -334,8 +330,6 @@
 			children = (
 				B8A0EC5D26188C8300A57562 /* Views */,
 				B8A0EC8C2618BDE100A57562 /* Entity */,
-				B8A0EC6326188C8400A57562 /* Router */,
-				B8A0EC5F26188C8300A57562 /* Protocols */,
 				B8A0EC5926188C8300A57562 /* Module */,
 			);
 			path = SearchResultScreen;
@@ -355,22 +349,6 @@
 				B8A0EC5E26188C8300A57562 /* SearchResultsViewController.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		B8A0EC5F26188C8300A57562 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				B8A0EC6026188C8400A57562 /* SearchResultProtocols.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		B8A0EC6326188C8400A57562 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				B8A0EC6426188C8400A57562 /* SearchResultRouter.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		B8A0EC8C2618BDE100A57562 /* Entity */ = {
@@ -605,10 +583,8 @@
 				B8A0ECAD2618D29600A57562 /* FilterItemTableViewCell.swift in Sources */,
 				B8A0EC2126179E0D00A57562 /* SearchBarCollectionReusableView.swift in Sources */,
 				B8A0EBE52617967400A57562 /* HomeViewController.swift in Sources */,
-				B8A0EC6826188C8400A57562 /* SearchResultProtocols.swift in Sources */,
 				B8A0EC8E2618BDEE00A57562 /* SearchResultModel.swift in Sources */,
 				B8A0EBEB2617967400A57562 /* HomeScreenRouter.swift in Sources */,
-				B8A0EC6A26188C8400A57562 /* SearchResultRouter.swift in Sources */,
 				B8A0ECAF2618D29600A57562 /* AdvancedSearchProtocols.swift in Sources */,
 				B8A0ECAB2618D29600A57562 /* AdvancedSearchPresenter.swift in Sources */,
 				B8A0EC1626179DA900A57562 /* ImageCollectionViewCell.swift in Sources */,
