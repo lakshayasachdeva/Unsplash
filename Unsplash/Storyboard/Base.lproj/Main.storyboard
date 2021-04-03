@@ -189,7 +189,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.clipsToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="handleCancelBtnTapWithSender:" destination="tv0-uk-zOS" eventType="touchUpOutside" id="je5-Jo-YjI"/>
+                                                    <action selector="handleCancelBtnTapWithSender:" destination="tv0-uk-zOS" eventType="touchUpInside" id="X4u-vy-2Zo"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrw-Wu-f7u">
@@ -205,7 +205,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="handleApplyBtnTapWithSender:" destination="tv0-uk-zOS" eventType="touchUpInside" id="6gb-sx-ZUi"/>
+                                                    <action selector="handleApplyBtnTapWithSender:" destination="tv0-uk-zOS" eventType="touchUpInside" id="85c-oY-6qX"/>
                                                 </connections>
                                             </button>
                                         </subviews>

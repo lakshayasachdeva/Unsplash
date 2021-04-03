@@ -10,6 +10,7 @@ import UIKit
 class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol {
     
     
+    
     @IBOutlet weak var filtersTableView: UITableView!{
         didSet{
             filtersTableView.contentInsetAdjustmentBehavior = .never
@@ -18,6 +19,7 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
     }
     @IBOutlet weak var cancelButton: UIButton!
     var filters = FilterModel.getFilters()
+    var presenter: AdvancedSearchPresenterProtocol?
     
     class func getAdvancedSearchVC() -> AdvancedSearchViewController {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdvancedSearchViewController") as! AdvancedSearchViewController
@@ -27,11 +29,10 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        self.title = AppConstants.filterScreenTitle
         addClearAllButton()
         drawBorderOnCancelBtn()
         registerNibs()
+        AdvancedSearchModule.create(viewRef: self)
     }
     
     override func viewWillAppear(_ animated: Bool){
@@ -41,7 +42,7 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
     
     func setScreenTitle(){
         navigationController?.navigationBar.prefersLargeTitles = true
-        self.title = AppConstants.kHomeScreenTitle
+        self.title = AppConstants.filterScreenTitle
     }
     
     
@@ -60,18 +61,35 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
     
     // MARK: Action methods
     @objc func handleClearBtnTap(){
-        filters = FilterModel.getDefaultFilters()
-        filtersTableView.reloadData()
+        presenter?.didSelectResetFilters()
     }
     
     @IBAction func handleCancelBtnTap(sender: UIButton){
-        
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func handleApplyBtnTap(sender: UIButton){
-        
+        //TODO;- tell search controller to apply filters...
+        presenter?.didTapOnApplyButton(withAppliedFilter: self.filters ?? [FilterModel]())
     }
     
+    func showData(withFilters filters: [FilterModel]?) {
+        self.filters = filters
+        filtersTableView.reloadData()
+    }
+    
+    func showModifiedData(withFitlerData data: [FilterModel]?, forGroup groupNum: Int) {
+        self.filters = data
+        reloadGroup(num: groupNum)
+    }
+    
+    func reloadGroup(num: Int){
+        self.filtersTableView.reloadSections(IndexSet(integer: num), with: .fade)
+    }
+    
+    func didApplyFilters() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 
@@ -114,38 +132,23 @@ extension AdvancedSearchViewController: UITableViewDelegate, UITableViewDataSour
 
 
 extension AdvancedSearchViewController: FilterItemSelectionProtocol{
+    
     func didSelectFilter(withSelectedItem itemIndex: Int, withGroupNum groupNum: Int) {
-        modifyFilterItem(withChangedItem: itemIndex, forGroup: groupNum)
+        presenter?.didSelectFilter(withSelectedItem: itemIndex, withGroupNum: groupNum, andPreviousFilter: self.filters!)
     }
     
-    func modifyFilterItem(withChangedItem itemIndex: Int, forGroup groupNum: Int){
-        for i in 0..<self.filters![groupNum].items!.count{
-            if i == itemIndex{
-                self.filters![groupNum].items![i].isApplied = true
-            } else{
-                self.filters![groupNum].items![i].isApplied = false
-            }
-        }
-        reloadGroup(num: groupNum)
-        checkiSFilterAppliedByUser()
-    }
-    
-    func reloadGroup(num: Int){
-        self.filtersTableView.reloadSections(IndexSet(integer: num), with: .fade)
-    }
-    
-    func checkiSFilterAppliedByUser(){
-        var isApplied = true
-        let defaultFilters = FilterModel.getDefaultFilters()
-        for i in 0..<filters!.count{
-            let customFilter = filters![i]
-            let defaultfilter = defaultFilters![i]
-            if customFilter != defaultfilter{
-                isApplied = false
-                break
-            }
-        }
-        print(isApplied)
-    }
+//    func checkiSFilterAppliedByUser(){
+//        var isApplied = true
+//        let defaultFilters = FilterModel.getDefaultFilters()
+//        for i in 0..<filters!.count{
+//            let customFilter = filters![i]
+//            let defaultfilter = defaultFilters![i]
+//            if customFilter != defaultfilter{
+//                isApplied = false
+//                break
+//            }
+//        }
+//        print(isApplied)
+//    }
     
 }

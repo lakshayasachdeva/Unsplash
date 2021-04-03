@@ -26,10 +26,6 @@ struct FilterModel: Codable, Equatable {
     let name:String?
     var items: [FilterItem]?
     
-    
-    
-    
-    
     static func getFilters() -> [FilterModel]? {
         if let data = UserDefaults.standard.value(forKey:AppConstants.kAppliedFiltersKey) as? Data {
             let filters = try? PropertyListDecoder().decode(Array<FilterModel>.self, from: data)
@@ -45,6 +41,10 @@ struct FilterModel: Codable, Equatable {
     
     static func getDefaultFilters() -> [FilterModel]?{
         return [AppConstants.group1Filter, AppConstants.group2Filter, AppConstants.group3Filter]
+    }
+    
+    static func clearAllSavedFilters() {
+        UserDefaults.standard.set(nil, forKey: AppConstants.kAppliedFiltersKey)
     }
     
 }

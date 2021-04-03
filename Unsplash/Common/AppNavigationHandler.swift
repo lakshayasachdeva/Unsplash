@@ -28,6 +28,8 @@ class AppNavigationHandler{
         vc.setupWithPhoto(photo: selectedImage, andFullResImg: imgUrl)
         if let view = viewRef as? HomeViewController{
             view.present(vc, animated: true, completion: nil)
+        } else if let view = viewRef as? SearchResultsViewController{
+            view.present(vc, animated: true, completion: nil)
         }
     }
     

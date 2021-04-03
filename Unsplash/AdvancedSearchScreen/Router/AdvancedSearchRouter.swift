@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+
+class AdvancedSearchRouter: AdvancedSearchRouterProtocol{
+    
+    func popToPreviousScreen() {
+        
+    }
+    
+    
+    
+}
