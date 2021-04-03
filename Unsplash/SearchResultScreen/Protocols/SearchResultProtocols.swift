@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import UIKit
+
+// Router
+protocol SearchResultScreenRouterProtocol: class {
+    func goToFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol)
+    func goToFilterScreen(presentFrom viewRef: ImagesScreenViewProtocol)
+}

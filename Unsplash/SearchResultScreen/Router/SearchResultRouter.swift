@@ -6,3 +6,19 @@
 //
 
 import Foundation
+import UIKit
+
+
+class SearchScreenRouter: SearchResultScreenRouterProtocol {
+    
+    func goToFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol) {
+        // navigate to full image screen...
+        AppNavigationHandler.goToFullImageScreen(withSelectedImage: selectedImage, andFullImageUrl: imgUrl, presentFrom: viewRef)
+    }
+    
+    
+    func goToFilterScreen(presentFrom viewRef: ImagesScreenViewProtocol) {
+        // navigate to search result screen
+    }
+
+}

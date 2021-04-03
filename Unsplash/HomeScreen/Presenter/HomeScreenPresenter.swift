@@ -10,6 +10,8 @@ import UIKit
 
 
 class HomeScreenPresenter: ImagesScreenPresenterProtocol, ImageScreenOutputInteractorOutputProtocol{
+   
+    
     
     weak var view: ImagesScreenViewProtocol?
     var interactor: ImagesScreenInputInteractorProtocol?
@@ -36,4 +38,10 @@ class HomeScreenPresenter: ImagesScreenPresenterProtocol, ImageScreenOutputInter
         wireframe?.goToSearchScreen(presentFrom: view!) 
     }
     
+    func searchImages(withKeyword keyword: String, withPageNum pageNum: Int) {
+        interactor?.searchImages(withKeyword: keyword, withPageNum: pageNum)
+    }
+    
 }
+
+

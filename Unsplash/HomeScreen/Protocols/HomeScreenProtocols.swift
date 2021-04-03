@@ -17,6 +17,7 @@ protocol ImagesScreenViewProtocol: class, UIViewControllerTransitioningDelegate 
     var imagesArray: [ImageModel]? {get set}
     func showImages(withImageData data:[ImageModel]?)
     var presenter: ImagesScreenPresenterProtocol? {get set}
+    var screenType: ScreenType { get set}
 }
 
 
@@ -29,8 +30,8 @@ protocol ImagesScreenPresenterProtocol: class {
     func getImages(forPageNum pageNum:Int)    
     func showFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol)
     func showSearchScreen()
+    func searchImages(withKeyword keyword:String, withPageNum pageNum:Int)
 
-    
 }
 
 
@@ -38,7 +39,7 @@ protocol ImagesScreenPresenterProtocol: class {
 protocol ImagesScreenInputInteractorProtocol: class {
     var presenter: ImageScreenOutputInteractorOutputProtocol? {get set}
     func fetchImages(forPageNum pageNum:Int)
-    
+    func searchImages(withKeyword keyword:String, withPageNum pageNum:Int)
 }
 
 
@@ -51,7 +52,7 @@ protocol ImageScreenOutputInteractorOutputProtocol: class {
 protocol ImageScreenRouterProtocol: class {
     func goToFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol)
     func goToSearchScreen(presentFrom viewRef: ImagesScreenViewProtocol)
-
+    
 }
 
 

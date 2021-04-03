@@ -7,7 +7,16 @@
 
 import UIKit
 
+
+public enum ScreenType: Int{
+    case search
+    case home
+}
+
+
 class HomeViewController: UIViewController, ImagesScreenViewProtocol {
+    
+    
     
     // MARK: IBOutlets
     @IBOutlet weak var imagesCollectionView: UICollectionView!
@@ -19,6 +28,9 @@ class HomeViewController: UIViewController, ImagesScreenViewProtocol {
     private var selectedIndex = 0
     private var selectedImage: UIImage!
     private var animationController = ImageTransitionController()
+    private var hasNext = true
+    var screenType: ScreenType = .home
+
 
     
     
@@ -26,12 +38,15 @@ class HomeViewController: UIViewController, ImagesScreenViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCollectionViewCellNibs()
-        setScreenTitle()
         setupCollectionView()
         HomeScreenModule.create(viewRef: self)
         presenter?.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        setScreenTitle()
+    }
     
     func registerCollectionViewCellNibs(){
         imagesCollectionView.register(ImageCollectionViewCell.cellNib, forCellWithReuseIdentifier: ImageCollectionViewCell.reuseIdentifier)
@@ -57,7 +72,13 @@ class HomeViewController: UIViewController, ImagesScreenViewProtocol {
         if imagesArray == nil{
             imagesArray = newImageData
         } else{
-            self.imagesArray!.append(contentsOf: newImageData)
+            if (data?.count ?? 0) == 0{
+                hasNext = false
+                return
+            } else{
+                hasNext = true
+                self.imagesArray!.append(contentsOf: newImageData)
+            }
         }
         
         if self.currentPage == 1 {
@@ -120,7 +141,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == imagesArray!.count - 2 {
+        if indexPath.row == imagesArray!.count - 2 && hasNext == true{
             currentPage = currentPage + 1
             presenter?.getImages(forPageNum: currentPage)
         }
@@ -142,6 +163,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         selectedIndex = indexPath.row
         selectedImage = image
+       // performSegue(withIdentifier: "fullScreenImageSegue", sender: self)
         presenter?.showFullImageScreen(withSelectedImage: selectedImage, andFullImageUrl: imagesArray![indexPath.row].urls!.full!, presentFrom: self)
     }
     
@@ -152,9 +174,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 // MARK: Delegates
 
 extension HomeViewController: SearchHeaderViewProtocol{
+    
     func didTapOnView() {
         presenter?.showSearchScreen()
     }
+    
+    
 }
 
 
