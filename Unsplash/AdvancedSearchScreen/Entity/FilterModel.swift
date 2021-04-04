@@ -14,7 +14,7 @@ struct FilterModel: Codable, Equatable {
         let group = lhs.sectionNum == rhs.sectionNum
         var isItemsEqual = true
         for i in 0..<lhs.items!.count{
-            if lhs.items![i].isApplied != rhs.items![i].isApplied {
+            if lhs.items![i] != rhs.items![i] {
                 isItemsEqual = false
                 break
             }
@@ -51,8 +51,16 @@ struct FilterModel: Codable, Equatable {
 }
 
 
-struct FilterItem:Codable {
+struct FilterItem:Codable, Equatable {
     let name: String!
     let value: String?
     var isApplied: Bool!
+    
+    static func == (lhs: FilterItem, rhs: FilterItem) -> Bool {
+        return lhs.name == rhs.name &&
+        lhs.value == rhs.value &&
+        lhs.isApplied == rhs.isApplied
+    }
+    
+    
 }

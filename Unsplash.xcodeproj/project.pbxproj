@@ -48,6 +48,8 @@
 		B8A0ECF7261A062900A57562 /* SearchResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0ECF6261A062900A57562 /* SearchResultRouter.swift */; };
 		B8A0ECFC261A07F800A57562 /* SearchResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0ECFB261A07F800A57562 /* SearchResultInteractor.swift */; };
 		B8A0ED02261A093300A57562 /* SearchResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0ED01261A093300A57562 /* SearchResultPresenter.swift */; };
+		B8A0ED40261A46A000A57562 /* AdvancedSearchInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0ED3F261A46A000A57562 /* AdvancedSearchInteractorTests.swift */; };
+		B8A0ED49261A4E8D00A57562 /* ImagesModelEntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0ED48261A4E8D00A57562 /* ImagesModelEntityTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +117,8 @@
 		B8A0ECF6261A062900A57562 /* SearchResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRouter.swift; sourceTree = "<group>"; };
 		B8A0ECFB261A07F800A57562 /* SearchResultInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultInteractor.swift; sourceTree = "<group>"; };
 		B8A0ED01261A093300A57562 /* SearchResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultPresenter.swift; sourceTree = "<group>"; };
+		B8A0ED3F261A46A000A57562 /* AdvancedSearchInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearchInteractorTests.swift; sourceTree = "<group>"; };
+		B8A0ED48261A4E8D00A57562 /* ImagesModelEntityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesModelEntityTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +187,8 @@
 			children = (
 				B8A0EBA72617940700A57562 /* UnsplashTests.swift */,
 				B8A0EBA92617940700A57562 /* Info.plist */,
+				B8A0ED3F261A46A000A57562 /* AdvancedSearchInteractorTests.swift */,
+				B8A0ED48261A4E8D00A57562 /* ImagesModelEntityTests.swift */,
 			);
 			path = UnsplashTests;
 			sourceTree = "<group>";
@@ -688,6 +694,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8A0ED49261A4E8D00A57562 /* ImagesModelEntityTests.swift in Sources */,
+				B8A0ED40261A46A000A57562 /* AdvancedSearchInteractorTests.swift in Sources */,
 				B8A0EBA82617940700A57562 /* UnsplashTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
