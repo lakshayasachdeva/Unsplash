@@ -9,11 +9,16 @@ import Foundation
 
 class AdvancedSearchPresenter: AdvancedSearchPresenterProtocol, AdvancedSearchOuputInteractorProtocol {
     
-    
-   
     var view: AdvancedSearchViewProtocol?
     var interactor: AdvancedSearchInputInteractorProtocol?
     var wireframe: AdvancedSearchRouterProtocol?
+    
+    
+    required init(view: AdvancedSearchViewProtocol, interactor: AdvancedSearchInputInteractorProtocol, wireframe: AdvancedSearchRouterProtocol) {
+        self.view = view
+        self.interactor = interactor
+        self.wireframe = wireframe
+    }
     
     func viewDidLoad() {
         interactor?.fetchSavedFilters()
@@ -46,12 +51,12 @@ class AdvancedSearchPresenter: AdvancedSearchPresenterProtocol, AdvancedSearchOu
     
     func didSaveFilters() {
         guard let vc = view as? AdvancedSearchViewController else {return}
-        wireframe?.popToPreviousScreen(fromScreen: vc)
+        wireframe?.popToPreviousScreen()
     }
     
     func didTapOnCancelButton() {
         guard let vc = view as? AdvancedSearchViewController else {return}
-        wireframe?.popToPreviousScreen(fromScreen: vc)
+        wireframe?.popToPreviousScreen()
     }
     
  

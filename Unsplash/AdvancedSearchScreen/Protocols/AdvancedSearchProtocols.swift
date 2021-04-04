@@ -10,12 +10,10 @@ import UIKit
 
 
 protocol AdvancedSearchViewProtocol: class {
+    var presenter: AdvancedSearchPresenterProtocol? {get set}
     var filtersTableView: UITableView! {get set}
-    func registerNibs()
-    var filters: [FilterModel]? {get set}
     func showData(withFilters filters: [FilterModel]?)
     func showModifiedData(withFitlerData data:[FilterModel]?, forGroup groupNum: Int)
-    var presenter: AdvancedSearchPresenterProtocol? {get set}
 }
 
 // View => Presenter
@@ -23,6 +21,7 @@ protocol AdvancedSearchPresenterProtocol: class {
     var view: AdvancedSearchViewProtocol? {get set}
     var interactor: AdvancedSearchInputInteractorProtocol? {get set}
     var wireframe: AdvancedSearchRouterProtocol? {get set}
+    init(view:AdvancedSearchViewProtocol, interactor: AdvancedSearchInputInteractorProtocol, wireframe: AdvancedSearchRouterProtocol)
     func viewDidLoad()
     func didTapOnCancelButton()
     func didTapOnApplyButton(withAppliedFilter filters: [FilterModel])
@@ -50,5 +49,5 @@ protocol AdvancedSearchOuputInteractorProtocol: class{
 
 // Router
 protocol AdvancedSearchRouterProtocol: class {
-    func popToPreviousScreen(fromScreen screen: AdvancedSearchViewController)
+    func popToPreviousScreen()
 }

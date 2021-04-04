@@ -30,7 +30,7 @@ class AppNavigationHandler{
     }
     
     static func goToAdvancedSearchScreen(fromViewController viewRef: UIViewController){
-        let vc = AdvancedSearchViewController.getAdvancedSearchVC()
+        let vc = AdvancedSearchRouter.createModule()
         removeBackButtonTitle(from: viewRef)
         viewRef.navigationController?.pushViewController(vc, animated: true)
     }

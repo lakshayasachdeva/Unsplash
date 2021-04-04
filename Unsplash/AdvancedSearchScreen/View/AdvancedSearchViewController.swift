@@ -34,7 +34,6 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
         addClearAllButton()
         drawBorderOnCancelBtn()
         registerNibs()
-        AdvancedSearchModule.create(viewRef: self)
         presenter?.viewDidLoad()
     }
     
