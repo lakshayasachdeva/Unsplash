@@ -50,12 +50,10 @@ class AdvancedSearchPresenter: AdvancedSearchPresenterProtocol, AdvancedSearchOu
     }
     
     func didSaveFilters() {
-        guard let vc = view as? AdvancedSearchViewController else {return}
         wireframe?.popToPreviousScreen()
     }
     
     func didTapOnCancelButton() {
-        guard let vc = view as? AdvancedSearchViewController else {return}
         wireframe?.popToPreviousScreen()
     }
     

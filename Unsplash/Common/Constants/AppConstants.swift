@@ -20,7 +20,7 @@ struct AppConstants {
     static let kHomeScreenTitle = "Unsplash"
     static let kSearchViewHeaderHeight: CGFloat = 50.0
     static let kBaseURL = "https://api.unsplash.com"
-    static let kCollectionPhotosURL = "\(AppConstants.kBaseURL)" + "/collections/1410291/photos"
+    static let kCollectionPhotosURL = "\(AppConstants.kBaseURL)" + "/collections/2423569/photos"
     
     static let sortIcon = UIImage(named: "sortIcon")
     static let sortAppliedIcon = UIImage(named: "sortAppliedIcon")
