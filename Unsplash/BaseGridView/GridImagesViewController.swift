@@ -12,7 +12,7 @@ class GridImagesViewController: UIViewController, GridImagesViewProtocol {
     var imagesCollectionView: UICollectionView!
     private var imagesArray: [ImageModel]?
     private let twoColumnsLayout = ImageColumnFlowLayout(cellsPerRow: 2, minimumInteritemSpacing: 20, minimumLineSpacing: 20, sectionInset: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
-   
+    
     private var selectedIndex = 0
     private var selectedImage: UIImage!
     private var animationController = ImageTransitionController()
@@ -23,8 +23,8 @@ class GridImagesViewController: UIViewController, GridImagesViewProtocol {
             currentPageIndex = currentPage
         }
     }
-
-
+    
+    
     // MARK: View lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +93,14 @@ class GridImagesViewController: UIViewController, GridImagesViewProtocol {
 extension GridImagesViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imagesArray?.count ?? 0
+        guard let images = imagesArray else {return 0}
+        let imagesCount = images.count
+        if imagesCount == 0{
+            imagesCollectionView.setEmptyMessage(AppConstants.kEmptyRecordsMessage)
+        } else{
+            imagesCollectionView.restore()
+        }
+        return imagesCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -107,7 +114,7 @@ extension GridImagesViewController: UICollectionViewDelegate, UICollectionViewDa
         return cell
     }
     
-
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == imagesArray!.count - 2 && hasNext == true{
             currentPage = currentPage + 1
@@ -134,7 +141,7 @@ extension GridImagesViewController: UICollectionViewDelegate, UICollectionViewDa
         AppNavigationHandler.goToFullImageScreen(withSelectedImage: selectedImage, andFullImageUrl: imagesArray![indexPath.row].urls!.full!, presentFrom: self)
     }
     
-   
+    
 }
 
 
