@@ -84,10 +84,8 @@ class SearchResultsViewController: GridImagesViewController, SearchResultScreenV
         guard let searchString = searchKeyword else {
             return
         }
-        currentPage = 1
-        imagesArray?.removeAll()
-        imagesCollectionView.reloadData()
-        presenter?.searchImages(withKeyword: searchString, withPageNum: currentPage)
+        resetView()
+        presenter?.searchImages(withKeyword: searchString, withPageNum: currentPageIndex)
     }
     
     deinit {
@@ -110,10 +108,8 @@ extension SearchResultsViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        imagesArray?.removeAll()
-        imagesCollectionView.reloadData()
+        resetView()
         searchKeyword = searchBar.text
-        currentPage = 1
         searchPhotos()
     }
     
@@ -125,7 +121,7 @@ extension SearchResultsViewController: UISearchBarDelegate {
         guard let query = searchKeyword else {
             return
         }
-        presenter?.searchImages(withKeyword: query, withPageNum: currentPage)
+        presenter?.searchImages(withKeyword: query, withPageNum: currentPageIndex)
     }
 }
 

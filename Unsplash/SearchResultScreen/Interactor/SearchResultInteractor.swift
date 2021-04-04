@@ -33,7 +33,7 @@ class SearchResultInteractor: SearchResultScreenInputInteractorProtocol {
             isFilterReset = checkIfFiltersBeingReset(forFilters: filters)
         }
         urlComps?.queryItems = queryItems
-        print(urlComps?.string)
+//        print(urlComps?.string)
         
         WebserviceHelper.requestAPI(forUrl: urlComps!.string!) { (response) in
             switch response {

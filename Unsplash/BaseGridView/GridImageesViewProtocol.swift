@@ -13,4 +13,5 @@ protocol GridImagesViewProtocol {
         get set
     }
     func showImages(withImageData data:[ImageModel]?)
+    var currentPageIndex: Int{get}
 }

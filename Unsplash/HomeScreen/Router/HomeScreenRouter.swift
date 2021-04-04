@@ -20,7 +20,7 @@ class HomeScreenRouter: HomeScreenRouterProtocol{
         let wireframe = HomeScreenRouter()
         let presenter: HomeScreenPresenterProtocol & HomeScreenOutputInteractorProtocol = HomeScreenPresenter.init(view: view, interactor: interactor, router: wireframe)
         view.presenter = presenter
-        view.presenter?.interactor?.presenter = presenter
+        interactor.presenter = presenter
         wireframe.viewController = view
         return view
     }

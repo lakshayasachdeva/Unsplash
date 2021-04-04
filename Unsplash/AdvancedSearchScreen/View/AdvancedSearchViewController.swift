@@ -10,9 +10,7 @@ import UIKit
 class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol {
    
     
-    
-    
-    
+    // MARK:- IBOutlets
     @IBOutlet weak var filtersTableView: UITableView!{
         didSet{
             filtersTableView.contentInsetAdjustmentBehavior = .never
@@ -20,7 +18,7 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
         }
     }
     @IBOutlet weak var cancelButton: UIButton!
-    var filters: [FilterModel]?
+    private var filters: [FilterModel]?
     var presenter: AdvancedSearchPresenterProtocol?
     
     class func getAdvancedSearchVC() -> AdvancedSearchViewController {
@@ -28,7 +26,7 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
         return vc
     }
     
-    
+    // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addClearAllButton()
@@ -42,11 +40,11 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
         setScreenTitle()
     }
     
+    // MARK: UI setup methods
     func setScreenTitle(){
         navigationController?.navigationBar.prefersLargeTitles = true
         self.title = AppConstants.filterScreenTitle
     }
-    
     
     func registerNibs(){
         filtersTableView.register(FilterItemTableViewCell.cellNib, forCellReuseIdentifier: FilterItemTableViewCell.reuseIdentifier)
@@ -74,6 +72,7 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
         presenter?.didTapOnApplyButton(withAppliedFilter: self.filters ?? [FilterModel]())
     }
     
+    // MARK: view data changes
     func showData(withFilters filters: [FilterModel]?) {
         self.filters = filters
         filtersTableView.reloadData()
@@ -91,7 +90,7 @@ class AdvancedSearchViewController: UIViewController, AdvancedSearchViewProtocol
     
 }
 
-
+// MARK: Tableview methods
 
 extension AdvancedSearchViewController: UITableViewDelegate, UITableViewDataSource{
     
@@ -130,6 +129,7 @@ extension AdvancedSearchViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 
+// MARK: delegate methods
 extension AdvancedSearchViewController: FilterItemSelectionProtocol{
     
     func didSelectFilter(withSelectedItem itemIndex: Int, withGroupNum groupNum: Int) {

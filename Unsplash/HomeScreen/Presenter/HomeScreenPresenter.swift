@@ -13,18 +13,14 @@ import UIKit
 
 class HomeScreenPresenter: HomeScreenPresenterProtocol, HomeScreenOutputInteractorProtocol {
         
-    weak var view: HomeScreenViewProtocol?
-    var interactor: HomeScreenInputInteractorProtocol?
-    var wireframe: HomeScreenRouterProtocol?
+    private weak var view: HomeScreenViewProtocol?
+    private var interactor: HomeScreenInputInteractorProtocol?
+    private var wireframe: HomeScreenRouterProtocol?
     
     required init(view: HomeScreenViewProtocol, interactor: HomeScreenInputInteractorProtocol, router: HomeScreenRouterProtocol) {
         self.view = view
         self.interactor = interactor
         self.wireframe = router
-    }
-    
-    func viewDidLoad() {
-        interactor?.fetchImagesFromServer(forPageNum: 1)
     }
     
     func getImages(forPageNum pageNum: Int) {

@@ -14,7 +14,7 @@ class HomeViewController: GridImagesViewController, HomeScreenViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         addHeaderView()
-        presenter?.viewDidLoad()
+        presenter?.getImages(forPageNum: currentPageIndex)
     }
     
     override func viewWillAppear(_ animated: Bool){

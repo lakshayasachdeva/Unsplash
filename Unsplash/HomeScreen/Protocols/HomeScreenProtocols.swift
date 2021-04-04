@@ -11,16 +11,10 @@ import UIKit
 
 protocol HomeScreenViewProtocol: class, GridImagesViewProtocol {
     var presenter: HomeScreenPresenterProtocol? {get set}
-   // func setFilterIconVisibility(toBeShown status:Bool, withIamge image:UIImage?)
 }
 
 
 protocol HomeScreenPresenterProtocol: class {
-    var view: HomeScreenViewProtocol? {get set}
-    var interactor: HomeScreenInputInteractorProtocol? {get set}
-    var wireframe: HomeScreenRouterProtocol? {get set}
-    init(view: HomeScreenViewProtocol, interactor: HomeScreenInputInteractorProtocol, router: HomeScreenRouterProtocol)
-    func viewDidLoad()
     func getImages(forPageNum pageNum: Int)
     func didTapOnSearchView()
 }

@@ -10,13 +10,19 @@ import UIKit
 class GridImagesViewController: UIViewController, GridImagesViewProtocol {
     
     var imagesCollectionView: UICollectionView!
-    var imagesArray: [ImageModel]?
+    private var imagesArray: [ImageModel]?
     private let twoColumnsLayout = ImageColumnFlowLayout(cellsPerRow: 2, minimumInteritemSpacing: 20, minimumLineSpacing: 20, sectionInset: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
-    var currentPage = 1
+   
     private var selectedIndex = 0
     private var selectedImage: UIImage!
     private var animationController = ImageTransitionController()
     private var hasNext = true
+    var currentPageIndex = 1
+    private var currentPage = 1 {
+        didSet{
+            currentPageIndex = currentPage
+        }
+    }
 
 
     // MARK: View lifecycle methods
@@ -73,7 +79,12 @@ class GridImagesViewController: UIViewController, GridImagesViewProtocol {
         fatalError("Must override")
     }
     
-
+    func resetView(){
+        currentPage = 1
+        imagesArray?.removeAll()
+        imagesCollectionView.reloadData()
+    }
+    
 }
 
 
