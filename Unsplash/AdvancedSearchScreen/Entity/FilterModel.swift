@@ -14,13 +14,14 @@ struct FilterModel: Codable, Equatable {
         let group = lhs.sectionNum == rhs.sectionNum
         var isItemsEqual = true
         for i in 0..<lhs.items!.count{
-            if lhs.items![i].isApplied != rhs.items![i].isApplied{
+            if lhs.items![i].isApplied != rhs.items![i].isApplied {
                 isItemsEqual = false
                 break
             }
         }
         return (group && isItemsEqual)
     }
+    
     let queryParam:String?
     let sectionNum:Int?
     let name:String?

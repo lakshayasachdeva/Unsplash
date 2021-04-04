@@ -16,21 +16,17 @@ class AppNavigationHandler{
     }
     
     static func goToSearchScreen(fromViewController viewRef: UIViewController){
-        let vc = SearchResultsViewController.getSearchResultVC()
+        let vc = SearchResultsRouter.createModule()
         removeBackButtonTitle(from: viewRef)
         viewRef.navigationController?.pushViewController(vc, animated: true)
     }
     
-    static func goToFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol){
+    static func goToFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: UIViewController){
         let vc = FullScreenImageViewController.getFullScreenVC()
-        vc.transitioningDelegate = viewRef
+        vc.transitioningDelegate = viewRef as? UIViewControllerTransitioningDelegate
         vc.modalPresentationStyle = .fullScreen
         vc.setupWithPhoto(photo: selectedImage, andFullResImg: imgUrl)
-        if let view = viewRef as? HomeViewController{
-            view.present(vc, animated: true, completion: nil)
-        } else if let view = viewRef as? SearchResultsViewController{
-            view.present(vc, animated: true, completion: nil)
-        }
+        viewRef.present(vc, animated: true, completion: nil)
     }
     
     static func goToAdvancedSearchScreen(fromViewController viewRef: UIViewController){

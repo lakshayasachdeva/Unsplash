@@ -9,45 +9,36 @@ import Foundation
 import UIKit
 
 
-class HomeScreenPresenter: ImagesScreenPresenterProtocol, ImageScreenOutputInteractorOutputProtocol{
+
+
+class HomeScreenPresenter: HomeScreenPresenterProtocol, HomeScreenOutputInteractorProtocol {
+        
+    weak var view: HomeScreenViewProtocol?
+    var interactor: HomeScreenInputInteractorProtocol?
+    var wireframe: HomeScreenRouterProtocol?
     
-    
-    weak var view: ImagesScreenViewProtocol?
-    var interactor: ImagesScreenInputInteractorProtocol?
-    var wireframe: ImageScreenRouterProtocol?
-    
-    func viewDidLoad() {
-        getImages(forPageNum: 1)
+    required init(view: HomeScreenViewProtocol, interactor: HomeScreenInputInteractorProtocol, router: HomeScreenRouterProtocol) {
+        self.view = view
+        self.interactor = interactor
+        self.wireframe = router
     }
     
+    func viewDidLoad() {
+        interactor?.fetchImagesFromServer(forPageNum: 1)
+    }
+    
+    func getImages(forPageNum pageNum: Int) {
+        interactor?.fetchImagesFromServer(forPageNum: pageNum)
+    }
+    
+    func didTapOnSearchView() {
+        wireframe?.goToSearchScreen()
+    }
     
     func didFetchImages(forPageNum pageNum: Int, andImages images: [ImageModel]?) {
         view?.showImages(withImageData: images)
     }
     
-    func getImages(forPageNum pageNum: Int) {
-        interactor?.fetchImages(forPageNum: pageNum)
-    }
-    
-    func showFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl: String, presentFrom viewRef: ImagesScreenViewProtocol) {
-        wireframe?.goToFullImageScreen(withSelectedImage: selectedImage, andFullImageUrl: imgUrl, presentFrom: viewRef)
-    }
-    
-    func showSearchScreen() {
-        wireframe?.goToSearchScreen(presentFrom: view!) 
-    }
-    
-    func searchImages(withKeyword keyword: String, withPageNum pageNum: Int) {
-        interactor?.searchImages(withKeyword: keyword, withPageNum: pageNum)
-    }
-    
-    func showFilterScreen() {
-        wireframe?.goToFilterScreen(presentFrom: view!)
-    }
-    
-    func filterButtonStatus(toShow: Bool, imageToShow: UIImage?) {
-        view?.setFilterIconVisibility(toBeShown: toShow, withIamge: imageToShow)
-    }
 }
 
 

@@ -9,53 +9,33 @@ import Foundation
 import UIKit
 
 
-protocol ImagesScreenViewProtocol: class, UIViewControllerTransitioningDelegate {
-    var imagesCollectionView: UICollectionView! {
-        get set
-    }
-    func registerCollectionViewCellNibs()
-    var imagesArray: [ImageModel]? {get set}
-    func showImages(withImageData data:[ImageModel]?)
-    var presenter: ImagesScreenPresenterProtocol? {get set}
-    var screenType: ScreenType { get set}
-    func setFilterIconVisibility(toBeShown status:Bool, withIamge image:UIImage?)
+protocol HomeScreenViewProtocol: class, GridImagesViewProtocol {
+    var presenter: HomeScreenPresenterProtocol? {get set}
+   // func setFilterIconVisibility(toBeShown status:Bool, withIamge image:UIImage?)
 }
 
 
-// Presenter => View protocol
-protocol ImagesScreenPresenterProtocol: class {
+protocol HomeScreenPresenterProtocol: class {
+    var view: HomeScreenViewProtocol? {get set}
+    var interactor: HomeScreenInputInteractorProtocol? {get set}
+    var wireframe: HomeScreenRouterProtocol? {get set}
+    init(view: HomeScreenViewProtocol, interactor: HomeScreenInputInteractorProtocol, router: HomeScreenRouterProtocol)
     func viewDidLoad()
-    var view: ImagesScreenViewProtocol? {get set}
-    var interactor: ImagesScreenInputInteractorProtocol? {get set}
-    var wireframe: ImageScreenRouterProtocol? {get set}
-    func getImages(forPageNum pageNum:Int)    
-    func showFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol)
-    func showSearchScreen()
-    func searchImages(withKeyword keyword:String, withPageNum pageNum:Int)
-    func showFilterScreen()
+    func getImages(forPageNum pageNum: Int)
+    func didTapOnSearchView()
 }
 
 
-// Presenter => Interactor
-protocol ImagesScreenInputInteractorProtocol: class {
-    var presenter: ImageScreenOutputInteractorOutputProtocol? {get set}
-    func fetchImages(forPageNum pageNum:Int)
-    func searchImages(withKeyword keyword:String, withPageNum pageNum:Int)
+protocol HomeScreenInputInteractorProtocol: class{
+    var presenter: HomeScreenOutputInteractorProtocol? {get set}
+    func fetchImagesFromServer(forPageNum pageNum:Int)
 }
 
-
-// Ineractor => Presenter
-protocol ImageScreenOutputInteractorOutputProtocol: class {
+protocol HomeScreenOutputInteractorProtocol: class{
     func didFetchImages(forPageNum pageNum:Int, andImages images:[ImageModel]?)
-    func filterButtonStatus(toShow:Bool, imageToShow:UIImage?)
 }
 
-// Router
-protocol ImageScreenRouterProtocol: class {
-    func goToFullImageScreen(withSelectedImage selectedImage: UIImage, andFullImageUrl imgUrl:String, presentFrom viewRef: ImagesScreenViewProtocol)
-    func goToSearchScreen(presentFrom viewRef: ImagesScreenViewProtocol)
-    func goToFilterScreen(presentFrom viewRef: ImagesScreenViewProtocol)
+protocol HomeScreenRouterProtocol: class{
+    func goToSearchScreen()
 }
-
-
 

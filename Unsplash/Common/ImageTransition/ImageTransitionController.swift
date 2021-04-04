@@ -50,7 +50,7 @@ class ImageTransitionController: NSObject, UIViewControllerAnimatedTransitioning
         
         // 4: Create transition image view
         let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.frame = (fromDelegate == nil) ? CGRect.zero : fromDelegate!.imageFrame()
         imageView.clipsToBounds = true
         containerView.addSubview(imageView)
