@@ -1,5 +1,7 @@
 # Unsplash
 
+![ Alt text](unsplash.gif) / ! [](unsplash.gif)
+
 Unsplash is a image heavy project, where we have majorly 3 modules:- 
 ## 1. Home Screen
  It shows list of images for a particular collection using unsplash APIs with a search feature.
