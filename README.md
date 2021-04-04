@@ -24,7 +24,7 @@ To increase the priority of image download task
 To decrease the priority of image download task
 
 
-Architecture - VIPER
-language - Swift
-Networking - URLSession
-Persistance - UserDefaults & Cache 
+### Architecture - VIPER
+### language - Swift
+### Networking - URLSession
+### Persistance - UserDefaults & Cache 
