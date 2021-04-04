@@ -2,11 +2,11 @@
 
 Unsplash is a image heavy project, where we have majorly 3 modules:- 
 ## 1. Home Screen
- Where we show list of images for a particular collection using unsplash APIs with a search feature.
+ It shows list of images for a particular collection using unsplash APIs with a search feature.
 ## 2. Search screen 
 This screen has a search functionality where we are showing a list of images in 2x2 grid form according to the  search query entered by the user.
 ## 3. Advanced filter screen 
-Here we have different search and sorting options to narrow down the search. We are storing applied filters in UserDefaults. 
+This screen has different search and sorting options to narrow down the search. We are storing applied filters in UserDefaults. 
 
 
 ## GridImagesViewController 
