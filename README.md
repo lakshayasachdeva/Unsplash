@@ -22,3 +22,9 @@ To increase the priority of image download task
 
 ### func decreasePriorityFor(urlString: String)  
 To decrease the priority of image download task
+
+
+Architecture - VIPER
+language - Swift
+Networking - URLSession
+Persistance - UserDefaults & Cache 
