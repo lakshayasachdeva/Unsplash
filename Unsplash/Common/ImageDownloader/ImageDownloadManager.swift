@@ -39,6 +39,7 @@ final class ImageDownloadManager {
                 if let data = try? Data(contentsOf: url) {
                     DispatchQueue.main.async(execute: { () -> Void in
                         let img  = UIImage(data: data)!
+                        // saving the image in the cache..
                         self?.cache.setObject(img, forKey: urlString as NSString)
                         self?.downloadTasks[urlString]?.completion(urlString, img)
                         self?.downloadTasks[urlString] = nil
@@ -49,15 +50,17 @@ final class ImageDownloadManager {
             task.priority = URLSessionTask.highPriority
             task.resume()
         }
-        
     }
     
+    
+    // to increase the priority of download task
     func increasePriorityFor(urlString: String) {
         if checkImageStatus(url: urlString) == .InProgress {
             downloadTasks[urlString]?.task.priority = URLSessionTask.highPriority
         }
     }
     
+    // to decrease the priority of download task
     func decreasePriorityFor(urlString: String) {
         if checkImageStatus(url: urlString) == .InProgress {
             downloadTasks[urlString]?.task.priority = URLSessionTask.lowPriority
