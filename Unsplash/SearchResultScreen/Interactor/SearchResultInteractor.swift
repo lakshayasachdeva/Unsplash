@@ -48,7 +48,7 @@ class SearchResultInteractor: SearchResultScreenInputInteractorProtocol {
                             let itemscount = response.results?.count ?? 0
                             
                             // when there are no items
-                            if itemscount == 0{
+                            if itemscount == 0 && pageNum == 0{
                                 if isFilterReset{
                                     strongSelf.presenter?.filterButtonStatus(toShow: false, imageToShow: nil)
                                 } else{
